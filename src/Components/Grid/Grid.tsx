@@ -7,6 +7,13 @@ type Selection = {
   selection: string
 }
 
+type Element = {
+  param1: string
+  param2: string
+  param3: string
+  param4: string
+}
+
 const Grid = ({selection}: Selection) => {
   const [info, setInfo] = useState([])
 
@@ -15,14 +22,15 @@ const Grid = ({selection}: Selection) => {
       .then(data => setInfo(data.results))
   }, [selection])
 
-  const generateCharInfoCards = () => {
-    return info.map((ele: {name: string; status: string; species: string; image: string}) => {
+  const generateCharInfoCards = (param1: string, param2: string, param3: string, param4: string) => {
+    return info.map((ele: Element) => {
+      // console.log(ele[param1])
       return (
         <InfoCard 
-          label={ele.name}
-          status={ele.status}
-          species={ele.species}
-          image={ele.image}
+          label={ele[param1 as keyof Element]}
+          status={ele[param2 as keyof Element]}
+          species={ele[param3 as keyof Element]}
+          image={ele[param4 as keyof Element]}
         />
       )
     })
@@ -30,7 +38,7 @@ const Grid = ({selection}: Selection) => {
 
   return (
     <div>{selection}
-      <div>{generateCharInfoCards()}</div>
+      <div>{selection === 'character' ? generateCharInfoCards('name', 'status', 'species', 'image') : null}</div>
     </div>
   )
 }
