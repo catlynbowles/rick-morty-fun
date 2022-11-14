@@ -12,6 +12,8 @@ type Element = {
   param2: string
   param3: string
   param4: string
+  id: string
+  // episode: Array<string>
 }
 
 const Grid = ({selection}: Selection) => {
@@ -30,6 +32,7 @@ const Grid = ({selection}: Selection) => {
           status={ele[param2 as keyof Element]}
           species={ele[param3 as keyof Element]}
           image={ele[param4 as keyof Element]}
+          id={ele.id}
         />
       )
     })

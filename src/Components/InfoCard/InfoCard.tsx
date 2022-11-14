@@ -1,17 +1,21 @@
+
+
 type info = {
   label: string
   status: string
   image: string
   species: string
+  id: string
 }
 
-const InfoCard = ({label, status, image, species}: info) => {
+const InfoCard = ({label, status, image, species, id}: info) => {
   return (
     <div>
       <h3>{label}</h3>
       <img src={image}></img>
-      <p>Status: {status}</p>
-      <p>Species: {species}</p>
+      <p>{status}</p>
+      <p>{species}</p>
+      <button>More Info</button>
     </div>
   )
 }
