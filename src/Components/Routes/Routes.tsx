@@ -1,17 +1,14 @@
+import { ReactNode } from "react"
 import { Switch, Route } from "react-router-dom"
+import Grid from "../Grid/Grid"
 
 const Routes = () => {
   return (
     <Switch>
-      <Route path='/characters'>
-        <div>chars</div>
-      </Route>
-      <Route path='/episodes'>
-        <div>eps</div>
-      </Route>
-      <Route path='/locations'>
-        <div>locs</div>
-      </Route>
+      <Route path='/:selection' render={({match}): ReactNode => {
+        console.log(match)
+        return <Grid selection={match.params.selection}/>
+      }}/>
     </Switch>
   )
 }
