@@ -22,9 +22,8 @@ const Grid = ({selection}: Selection) => {
       .then(data => setInfo(data.results))
   }, [selection])
 
-  const generateCharInfoCards = (param1: string, param2: string, param3: string, param4: string) => {
+  const generateInfoCards = (param1: string, param2: string, param3: string, param4?: string) => {
     return info.map((ele: Element) => {
-      // console.log(ele[param1])
       return (
         <InfoCard 
           label={ele[param1 as keyof Element]}
@@ -38,7 +37,9 @@ const Grid = ({selection}: Selection) => {
 
   return (
     <div>{selection}
-      <div>{selection === 'character' ? generateCharInfoCards('name', 'status', 'species', 'image') : null}</div>
+      <div>{selection === 'character' ? generateInfoCards('name', 'status', 'species', 'image') : 
+        selection === 'location' ? generateInfoCards('name', 'type', 'dimension') : 
+        selection === 'episode' ? generateInfoCards('name', 'air_date', 'episode') : null}</div>
     </div>
   )
 }
