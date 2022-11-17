@@ -3,6 +3,7 @@ import {getShowInfo} from '../../apiCalls'
 import {useState} from 'react'
 import InfoCard from '../InfoCard/InfoCard'
 import DetailView from "../DetailView/DetailView"
+import Navbar from "../Navbar/Navbar"
 
 type Selection = {
   selection: string
@@ -20,7 +21,7 @@ type Element = {
 
 const Grid = ({selection}: Selection) => {
   const [info, setInfo] = useState([])
-  const [id, setId] = useState('')
+  const [id, setId] = useState(0)
   const [detailView, setDetailView] = useState(false)
 
   useEffect(() => {
@@ -43,14 +44,14 @@ const Grid = ({selection}: Selection) => {
     })
   }
 
-  const showDetails = (id: string) => {
+  const showDetails = (id: number) => {
     setId(id)
     setDetailView(true)
   }
 
   return (
     <div>{selection}
-      <div>{detailView ? <DetailView id={id} setDetailView={setDetailView}/> :
+      <div>{detailView ? <DetailView ele={info.find((ele: {id: number; name: string}) => ele.id === id)} setDetailView={setDetailView}/> :
         selection === 'character' ? generateInfoCards('name', 'status', 'species', 'image') : 
         selection === 'location' ? generateInfoCards('name', 'type', 'dimension') : 
         generateInfoCards('name', 'air_date', 'episode')}</div>

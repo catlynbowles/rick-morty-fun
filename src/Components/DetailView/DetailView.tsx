@@ -1,12 +1,17 @@
+import Modal from "../Modal/Modal"
+import './DetailView.scss'
+
 type Prop = {
-  id: string
+  ele: undefined | {
+    name: string
+  }
   setDetailView: any
 }
 
-const DetailView = ({id, setDetailView}: Prop) => {
+const DetailView = ({ ele, setDetailView }: Prop) => {
   return (
-    <div>{id}
-    <button onClick={() => setDetailView(false)}>Close</button>
+    <div className='modal-cont'>
+      <Modal ele={ele} setDetailView={setDetailView} />
     </div>
   )
 }
