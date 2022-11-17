@@ -6,7 +6,6 @@ const Routes = () => {
   return (
     <Switch>
       <Route path='/:selection' render={({match}): ReactNode => {
-        console.log(match)
         return <Grid selection={match.params.selection}/>
       }}/>
     </Switch>

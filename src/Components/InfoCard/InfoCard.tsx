@@ -6,16 +6,17 @@ type info = {
   image: string
   species: string
   id: string
+  showDetails: any
 }
 
-const InfoCard = ({label, status, image, species, id}: info) => {
+const InfoCard = ({label, status, image, species, id, showDetails}: info) => {
   return (
     <div>
       <h3>{label}</h3>
       <img src={image}></img>
       <p>{status}</p>
       <p>{species}</p>
-      <button>More Info</button>
+      <button onClick={() => showDetails(id)}>More Info</button>
     </div>
   )
 }

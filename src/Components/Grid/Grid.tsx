@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import {getShowInfo} from '../../apiCalls'
 import {useState} from 'react'
 import InfoCard from '../InfoCard/InfoCard'
+import DetailView from "../DetailView/DetailView"
 
 type Selection = {
   selection: string
@@ -13,11 +14,14 @@ type Element = {
   param3: string
   param4: string
   id: string
+  showDetails: any
   // episode: Array<string>
 }
 
 const Grid = ({selection}: Selection) => {
   const [info, setInfo] = useState([])
+  const [id, setId] = useState('')
+  const [detailView, setDetailView] = useState(false)
 
   useEffect(() => {
     getShowInfo(selection)
@@ -33,16 +37,23 @@ const Grid = ({selection}: Selection) => {
           species={ele[param3 as keyof Element]}
           image={ele[param4 as keyof Element]}
           id={ele.id}
+          showDetails={showDetails}
         />
       )
     })
   }
 
+  const showDetails = (id: string) => {
+    setId(id)
+    setDetailView(true)
+  }
+
   return (
     <div>{selection}
-      <div>{selection === 'character' ? generateInfoCards('name', 'status', 'species', 'image') : 
+      <div>{detailView ? <DetailView id={id} setDetailView={setDetailView}/> :
+        selection === 'character' ? generateInfoCards('name', 'status', 'species', 'image') : 
         selection === 'location' ? generateInfoCards('name', 'type', 'dimension') : 
-        selection === 'episode' ? generateInfoCards('name', 'air_date', 'episode') : null}</div>
+        generateInfoCards('name', 'air_date', 'episode')}</div>
     </div>
   )
 }
