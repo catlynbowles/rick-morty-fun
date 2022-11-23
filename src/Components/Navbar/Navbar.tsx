@@ -4,9 +4,9 @@ import './Navbar.scss'
 const Navbar = () => {
   return (
     <nav>
-      <Link to='/character'>Characters</Link>
-      <Link to='/episode'>Episodes</Link>
-      <Link to='/location'>Locations</Link>
+      <Link to='/character'>All Characters</Link>
+      {/* <Link to='/episode'>Episodes</Link>
+      <Link to='/location'>Locations</Link> */}
     </nav>
   )
 }
