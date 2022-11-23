@@ -3,7 +3,7 @@ import {getShowInfo} from '../../apiCalls'
 import {useState} from 'react'
 import InfoCard from '../InfoCard/InfoCard'
 import DetailView from "../DetailView/DetailView"
-import Navbar from "../Navbar/Navbar"
+import './Grid.scss'
 
 type Selection = {
   selection: string
@@ -50,9 +50,9 @@ const Grid = ({selection}: Selection) => {
   }
 
   return (
-    <div>{selection}
-      <div>{detailView ? <DetailView ele={info.find((ele: {id: number; name: string}) => ele.id === id)} setDetailView={setDetailView}/> :
-        selection === 'character' ? generateInfoCards('name', 'status', 'species', 'image') : 
+    <div className='selection'>{selection}
+    {detailView && <DetailView ele={info.find((ele: {id: number; name: string}) => ele.id === id)} setDetailView={setDetailView}/>}
+      <div>{selection === 'character' ? generateInfoCards('name', 'status', 'species', 'image') : 
         selection === 'location' ? generateInfoCards('name', 'type', 'dimension') : 
         generateInfoCards('name', 'air_date', 'episode')}</div>
     </div>

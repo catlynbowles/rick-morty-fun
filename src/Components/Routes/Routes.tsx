@@ -5,8 +5,12 @@ import Grid from "../Grid/Grid"
 const Routes = () => {
   return (
     <Switch>
-      <Route path='/:selection' render={({match}): ReactNode => {
+      <Route exact path='/:selection' render={({match}): ReactNode => {
         return <Grid selection={match.params.selection}/>
+      }}/>
+      <Route exact path='/:thing/episodes' render={({match}): ReactNode => {
+        console.log(match) 
+        return <div>{match.params.thing}</div>
       }}/>
     </Switch>
   )
